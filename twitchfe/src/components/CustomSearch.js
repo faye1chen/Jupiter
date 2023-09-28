@@ -2,11 +2,14 @@ import React, { useState } from "react"
 import { searchGameByName } from '../utils'
 import { message, Button, Modal, Form, Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons';
+import { useForm } from 'antd/lib/form/Form';
 
 function CustomSearch({ onSuccess }) {
+  const [form] = useForm();
   const [displayModal, setDisplayModal] = useState(false)
 
   const handleCancel = () => {
+    form.resetFields();
     setDisplayModal(false)
   }
 
@@ -16,6 +19,7 @@ function CustomSearch({ onSuccess }) {
 
   const onSubmit = (data) => {
     searchGameByName(data.game_name).then((data) => {
+      form.resetFields();
       setDisplayModal(false)
       onSuccess(data)
     }).catch((err) => {
@@ -38,6 +42,7 @@ function CustomSearch({ onSuccess }) {
         footer={null}
       >
         <Form
+          form={form}
           name="custom_search"
           onFinish={onSubmit}
         >

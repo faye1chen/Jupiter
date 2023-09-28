@@ -6,12 +6,14 @@ import React from 'react'
 
 const { Header } = Layout
 
-function PageHeader({ loggedIn, signoutOnClick, signinOnSuccess, favoriteItems }) {
+function PageHeader({ loggedIn, signoutOnClick, signinOnSuccess, favoriteItems,favoriteOnChange }) {
   return (
     <Header>
       <Row justify='space-between'>
         <Col>
-          {loggedIn && <Favorites favoriteItems={favoriteItems} />}
+          {loggedIn && <Favorites 
+          favoriteItems={favoriteItems}
+          favoriteOnChange={favoriteOnChange} />}
         </Col>
         <Col>
           {loggedIn && <Button shape="round" onClick={signoutOnClick}>Logout</Button>}

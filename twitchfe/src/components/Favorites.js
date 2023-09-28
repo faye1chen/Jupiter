@@ -5,7 +5,7 @@ import { EyeOutlined, YoutubeOutlined, VideoCameraOutlined, StarFilled } from '@
 
 const { SubMenu } = Menu
 
-function Favorites({ favoriteItems }) {
+function Favorites({ favoriteItems,favoriteOnChange }) {
   const [displayDrawer, setDisplayDrawer] = useState(false)
   const { VIDEO, STREAM, CLIP } = favoriteItems;
 
@@ -36,13 +36,16 @@ function Favorites({ favoriteItems }) {
           selectable={false}
         >
           <SubMenu key={'streams'} icon={<EyeOutlined />} title="Streams">
-            <MenuItem items={STREAM} />
+            <MenuItem items={STREAM}
+            favoriteOnChange={favoriteOnChange} />
           </SubMenu>
           <SubMenu key={'videos'} icon={<YoutubeOutlined />} title="Videos">
-            <MenuItem items={VIDEO} />
+            <MenuItem items={VIDEO}
+            favoriteOnChange={favoriteOnChange} />
           </SubMenu>
           <SubMenu key={'clips'} icon={<VideoCameraOutlined />} title="Clips">
-            <MenuItem items={CLIP} />
+            <MenuItem items={CLIP}
+            favoriteOnChange={favoriteOnChange} />
           </SubMenu>
         </Menu>
       </Drawer>
